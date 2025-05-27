@@ -1,0 +1,216 @@
+@font-face {
+  font-family: "SVNArtful";
+  src: url("font/SVN-Artful\ Beauty.ttf") format("truetype");
+  font-weight: 400; /* only the Regular cut is distributed */
+  font-style: normal;
+  font-display: swap; /* shows fallback text first, then swaps in the font */
+}
+
+body {
+  overflow-x: hidden;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+.loader {
+  width: 40px;
+  aspect-ratio: 1;
+  color: #f03355;
+  position: relative;
+  background: conic-gradient(from 134deg at top, currentColor 92deg, #0000 0)
+      top,
+    conic-gradient(from -46deg at bottom, currentColor 92deg, #0000 0) bottom;
+  background-size: 100% 50%;
+  background-repeat: no-repeat;
+}
+.loader:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  --g: currentColor 14.5px, #0000 0 calc(100% - 14.5px), currentColor 0;
+  background: linear-gradient(45deg, var(--g)),
+    linear-gradient(-45deg, var(--g));
+  animation: l7 1.5s infinite cubic-bezier(0.3, 1, 0, 1);
+}
+@keyframes l7 {
+  33% {
+    inset: -10px;
+    transform: rotate(0deg);
+  }
+  66% {
+    inset: -10px;
+    transform: rotate(90deg);
+  }
+  100% {
+    inset: 0;
+    transform: rotate(90deg);
+  }
+}
+
+.slider-container {
+  padding: 20px 0;
+  background-color: #d5e8f4;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.slider-track {
+  display: flex;
+  animation: scroll linear 20s infinite;
+  width: 100%;
+}
+
+.slider-track img {
+  object-fit: cover;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(-50%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-out {
+  from {
+    transform: translateX(50%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(50%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-3d {
+  from {
+    transform: rotateX(-60deg) rotateY(-30deg) translateZ(-30px);
+    opacity: 0;
+  }
+  to {
+    transform: rotateX(0deg) rotateY(0deg) translateZ(0);
+    opacity: 1;
+  }
+}
+
+@keyframes flip-up {
+  from {
+    transform: rotateX(90deg);
+    opacity: 0;
+  }
+  to {
+    transform: rotateX(0deg);
+    opacity: 1;
+  }
+}
+
+.box.animate.flip-up {
+  animation: flip-up 1s ease forwards;
+  transform-origin: bottom center;
+  backface-visibility: hidden;
+}
+
+.box {
+  opacity: 0;
+  max-width: 100%;
+}
+
+.box.animate.slide-in {
+  animation: slide-in 1.5s forwards;
+}
+
+.box.animate.slide-out {
+  animation: slide-out 1.5s forwards;
+}
+
+.box.animate.slide-in-3d {
+  animation: slide-in-3d 1.5s forwards;
+}
+
+.box.animate.slide-up {
+  animation: slide-up 1.5s forwards;
+}
+
+.text-wrap-right {
+  float: right;
+  margin: 10px;
+}
+.text-wrap-left {
+  float: left;
+  margin: 10px;
+}
+
+.bg-1 {
+  background-color: #a4e2f9;
+}
+
+.bg-2 {
+  background-color: #efc7d2;
+}
+
+.card {
+  border-radius: 25px;
+}
+
+.image {
+  display: flex;
+  flex-wrap: wrap;
+}
+.image img {
+  height: 230px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  animation: explode 1.2s ease-out forwards;
+  z-index: 2;
+}
+
+@keyframes explode {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--x), var(--y)) scale(0.5);
+    opacity: 0;
+  }
+}
