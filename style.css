@@ -8,9 +8,6 @@
 
 body {
   overflow-x: hidden;
-}
-
-* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -190,10 +187,24 @@ img {
   flex-wrap: wrap;
 }
 .image img {
-  height: 230px;
+  height: 290px;
   width: 100%;
   object-fit: cover;
 }
+
+.image-box img {
+  height: 100%;
+  object-fit: cover; /* or contain depending on your needs */
+  border-radius: 25px;
+}
+.equal-height {
+  display: flex;
+  align-items: stretch;
+}
+
+.delay-0 { animation-delay: 0s !important; }
+.delay-1 { animation-delay: 0.4s !important; }
+.delay-2 { animation-delay: 0.8s !important; }
 
 .particle {
   position: absolute;
@@ -202,6 +213,10 @@ img {
   border-radius: 50%;
   animation: explode 1.2s ease-out forwards;
   z-index: 2;
+}
+
+.box.animate.explode {
+  animation: explode 1.5s forwards;
 }
 
 @keyframes explode {
