@@ -6,6 +6,13 @@
   font-display: swap; /* shows fallback text first, then swaps in the font */
 }
 
+@font-face {
+  font-family: 'iCielBCCubano';
+  src: url('/fonts/iCielBCCubano-Normal.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   overflow-x: hidden;
   margin: 0;
@@ -50,6 +57,21 @@ img {
     inset: 0;
     transform: rotate(90deg);
   }
+}
+p {
+  text-align: justify;
+}
+
+.card {
+  overflow: hidden;
+}
+.card .content {
+  background-image: url("./image/vivid-blurred-colorful-wallpaper-background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  height: 100%;
 }
 
 .slider-container {
@@ -202,9 +224,15 @@ img {
   align-items: stretch;
 }
 
-.delay-0 { animation-delay: 0s !important; }
-.delay-1 { animation-delay: 0.4s !important; }
-.delay-2 { animation-delay: 0.8s !important; }
+.delay-0 {
+  animation-delay: 0s !important;
+}
+.delay-1 {
+  animation-delay: 0.4s !important;
+}
+.delay-2 {
+  animation-delay: 0.8s !important;
+}
 
 .particle {
   position: absolute;
@@ -228,4 +256,31 @@ img {
     transform: translate(var(--x), var(--y)) scale(0.5);
     opacity: 0;
   }
+}
+
+.box.fade-in-text {
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 1) 70%,
+    rgba(0, 0, 0, 0)
+  );
+  mask-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 1) 100%,
+    rgba(0, 0, 0, 0)
+  );
+  -webkit-mask-size: 0% 100%;
+  mask-size: 0% 100%;
+  -webkit-mask-position: left top;
+  mask-position: left top;
+  transition: -webkit-mask-size 1.5s ease-out;
+  transition: mask-size 1.5s ease-out;
+}
+
+.box.fade-in-text.animate {
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  opacity: 1;
 }
